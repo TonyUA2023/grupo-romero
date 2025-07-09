@@ -114,5 +114,7 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
-
+    'to' => [
+    'address' => env('MAIL_TO_ADDRESS', 'info@tudominio.com'),
+],
 ];
