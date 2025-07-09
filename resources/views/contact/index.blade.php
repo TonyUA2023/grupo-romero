@@ -60,7 +60,7 @@
                 
                 <!-- Mapa -->
                 <div class="rounded-xl overflow-hidden shadow-lg h-80">
-                    {!! $settings['google_maps']->value !!}
+                    aaa
                 </div>
             </div>
             

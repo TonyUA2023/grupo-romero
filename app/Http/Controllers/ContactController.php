@@ -11,10 +11,16 @@ class ContactController extends Controller
 {
     public function index()
     {
-        // Obtener servicios para el dropdown del formulario
+        // Obtener servicios activos
         $services = DB::table('services')->where('is_active', true)->get();
-        
-        return view('contact.index', compact('services'));
+
+        // Obtener ajustes y agruparlos por clave para acceso fácil
+        $settingsCollection = DB::table('settings')->get()->keyBy('key');
+
+        return view('contact.index', [
+            'services' => $services,
+            'settings' => $settingsCollection,
+        ]);
     }
 
     public function send(Request $request)
