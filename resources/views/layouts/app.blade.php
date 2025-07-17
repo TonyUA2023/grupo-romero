@@ -176,164 +176,143 @@
     <div class="section-divider"></div>
 
     <!-- Footer -->
-    <footer class="bg-white py-20">
-        <div class="max-w-9xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-                <!-- Productos -->
-                <div>
-                    <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Productos</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Lentes de Vista</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Lentes de Sol</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Lentes de Contacto</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Accesorios</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Nuevas Colecciones</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Servicios -->
-                <div>
-                    <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Servicios</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Test de Estilo</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Prueba Virtual</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Exámenes de Vista</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Renovación de Receta</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Información -->
-                <div>
-                    <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Información</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Seguros Médicos</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Promociones</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Garantías</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Cuidado de Lentes</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Empresa -->
-                <div>
-                    <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Empresa</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Nuestra Historia</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Responsabilidad Social</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Testimonios</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Trabaja con Nosotros</a></li>
-                    </ul>
-                </div>
+<footer class="bg-white py-20">
+    <div class="max-w-9xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+            
+            <!-- Servicios -->
+            <div>
+                <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Servicios</h3>
+                <ul class="space-y-4">
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Test de Estilo</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Prueba Virtual</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Exámenes de Vista</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Renovación de Receta</a></li>
+                </ul>
             </div>
             
-            <!-- Section Divider -->
-            <div class="section-divider my-16"></div>
+            <!-- Empresa -->
+            <div>
+                <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Empresa</h3>
+                <ul class="space-y-4">
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Nuestra Historia</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Responsabilidad Social</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Testimonios</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Trabaja con Nosotros</a></li>
+                </ul>
+            </div>
             
             <!-- Servicios Profesionales -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 mb-16">
-                <div>
-                    <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Servicios Profesionales</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Reservar Examen de Vista</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Consulta Especializada</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Medición de Distancia Pupilar</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Ubicación</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Nuestra Clínica en Huancayo</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Cómo Llegar</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Horarios de Atención</a></li>
-                    </ul>
-                </div>
+            <div>
+                <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Servicios Profesionales</h3>
+                <ul class="space-y-4">
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Consultas Especializadas</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Cirugía Láser</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Tratamientos</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Diagnóstico Avanzado</a></li>
+                </ul>
             </div>
             
-            <!-- Section Divider -->
-            <div class="section-divider mb-16"></div>
-            
-            <!-- Educación -->
-            <div class="mb-16">
-                <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Educación</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Guía de Lentes</a>
-                    <a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Protección Solar</a>
-                    <a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Salud Visual</a>
-                    <a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Tecnología Óptica</a>
-                </div>
+            <!-- Ubicación -->
+            <div>
+                <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Ubicación</h3>
+                <ul class="space-y-4">
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Nuestra Clínica en Huancayo</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Cómo Llegar</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Horarios de Atención</a></li>
+                </ul>
             </div>
         </div>
         
-        <!-- Bottom Footer -->
-        <div class="border-t border-gray-100">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-                <div class="flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0">
-                    <div class="flex items-center space-x-8">
-                        <span class="text-sm text-gray-500 font-light">Perú</span>
-                        <div class="flex space-x-6">
-                            <a href="#" class="text-gray-400 hover:text-black transition-colors duration-300">
-                                <i class="fab fa-facebook-f text-sm"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-black transition-colors duration-300">
-                                <i class="fab fa-instagram text-sm"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-black transition-colors duration-300">
-                                <i class="fab fa-youtube text-sm"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-black transition-colors duration-300">
-                                <i class="fab fa-linkedin-in text-sm"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center lg:text-right">
-                        <p class="text-sm text-gray-500 font-light mb-2">¿Necesitas ayuda?</p>
-                        <p class="text-sm text-gray-500 font-light">
-                            Estamos aquí para ti. Encuentra respuestas a tus preguntas 
-                            <a href="#" class="text-black hover:text-gray-600 transition-colors duration-300 underline">aquí</a>.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Contact Info -->
-                <div class="mt-16 pt-12 border-t border-gray-100">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-                        <div class="space-y-3">
-                            <div class="w-12 h-12 mx-auto bg-gray-50 rounded-full flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-gray-600 text-sm"></i>
-                            </div>
-                            <p class="text-gray-600 font-light">Av. Giráldez 123, Huancayo, Junín</p>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="w-12 h-12 mx-auto bg-gray-50 rounded-full flex items-center justify-center">
-                                <i class="fas fa-phone text-gray-600 text-sm"></i>
-                            </div>
-                            <p class="text-gray-600 font-light">+51 64 123 4567</p>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="w-12 h-12 mx-auto bg-gray-50 rounded-full flex items-center justify-center">
-                                <i class="fas fa-envelope text-gray-600 text-sm"></i>
-                            </div>
-                            <p class="text-gray-600 font-light">info@gruporomero.com</p>
-                        </div>
+        <!-- Section Divider -->
+        <div class="section-divider my-16"></div>
+        
+        <!-- Educación -->
+        <div class="mb-16">
+            <h3 class="text-lg font-light text-gray-900 mb-8 uppercase tracking-wider">Educación</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Guía de Lentes</a>
+                <a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Protección Solar</a>
+                <a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Salud Visual</a>
+                <a href="#" class="text-gray-600 hover:text-black transition-colors duration-300 font-light">Tecnología Óptica</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Footer -->
+    <div class="border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+            <div class="flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0">
+                <!-- País y Redes Sociales -->
+                <div class="flex items-center space-x-8">
+                    <span class="text-sm text-gray-500 font-light">Perú</span>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-black transition-colors duration-300">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-black transition-colors duration-300">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-black transition-colors duration-300">
+                            <i class="fab fa-youtube text-sm"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-black transition-colors duration-300">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <!-- Legal Links -->
-                <div class="mt-16 pt-12 border-t border-gray-100 text-center">
-                    <div class="flex flex-wrap justify-center space-x-8 text-sm text-gray-500 font-light mb-8">
-                        <a href="#" class="hover:text-black transition-colors duration-300">Política de Privacidad</a>
-                        <a href="#" class="hover:text-black transition-colors duration-300">Términos de Uso</a>
-                        <a href="#" class="hover:text-black transition-colors duration-300">Accesibilidad</a>
-                        <a href="#" class="hover:text-black transition-colors duration-300">Cookies</a>
-                    </div>
-                    <p class="text-sm text-gray-400 font-light">
-                        &copy; {{ date('Y') }} Grupo Romero. Todos los derechos reservados.
+                <!-- Preguntas -->
+                <div class="text-center lg:text-right">
+                    <p class="text-sm text-gray-500 font-light mb-2">¿Necesitas ayuda?</p>
+                    <p class="text-sm text-gray-500 font-light">
+                        Estamos aquí para ti. Encuentra respuestas a tus preguntas 
+                        <a href="#" class="text-black hover:text-gray-600 transition-colors duration-300 underline">aquí</a>.
                     </p>
                 </div>
             </div>
+            
+            <!-- Contact Info -->
+            <div class="mt-16 pt-12 border-t border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 mx-auto bg-gray-50 rounded-full flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-gray-600 text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 font-light">Av. Giráldez 123, Huancayo, Junín</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 mx-auto bg-gray-50 rounded-full flex items-center justify-center">
+                            <i class="fas fa-phone text-gray-600 text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 font-light">+51 64 123 4567</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 mx-auto bg-gray-50 rounded-full flex items-center justify-center">
+                            <i class="fas fa-envelope text-gray-600 text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 font-light">info@gruporomero.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Derechos de autor (Sin links) -->
+            <div class="mt-16 pt-12 border-t border-gray-100 text-center">
+                <p class="text-sm text-gray-400 font-light">
+                    &copy; {{ date('Y') }} Grupo Romero. Todos los derechos reservados.
+                </p>
+            </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
+<style>
+    .section-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, #d1d5db 50%, transparent 100%);
+    }
+</style>
 
     <!-- Scripts -->
     <script>

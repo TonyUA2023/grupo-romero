@@ -100,7 +100,7 @@
             @endforeach
         </div>
         <div class="border-t border-gray-200 px-6 py-4 text-center">
-            <a href="{{ route('blog.index') }}" class="text-blue-600 hover:text-blue-800">Ver todos los artículos</a>
+            <a href="{{ route('blogs.index') }}" class="text-blue-600 hover:text-blue-800">Ver todos los artículos</a>
         </div>
     </div>
 </div>

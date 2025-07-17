@@ -8,7 +8,7 @@ use App\Models\GalleryItem;
 use App\Models\BlogPost;
 use App\Models\Setting;
 use App\Models\Section;
-
+use App\Models\TeamMember;
 
 class HomeController extends Controller
 {
@@ -29,11 +29,6 @@ class HomeController extends Controller
                                   ->orderBy('order')
                                   ->take(8)
                                   ->get();
-
-        $latestPosts = BlogPost::where('is_published', true)
-                              ->orderBy('published_at', 'desc')
-                              ->take(3)
-                              ->get();
 
         $settings = Setting::pluck('value', 'key');
         $featuredServices = Service::where('featured', true)
@@ -60,6 +55,22 @@ class HomeController extends Controller
             ->orderBy('id')
             ->take(3)
             ->get();
+        $servicesSections = Section::whereHas('page', function($q) {
+            $q->where('slug', ''); // O usa el id de la página de inicio si lo tienes fijo
+        })
+            ->where('type', 'services')
+            ->where('order', 4)
+            ->where('is_active', true)
+            ->orderBy('id')
+            ->get();
+            
+        $latestPosts = BlogPost::where('is_published', true)
+            ->orderBy('published_at', 'desc')
+            ->take(4)
+            ->get();
+        $team = TeamMember::where('is_active', true)
+            ->orderBy('id', 'desc')
+            ->get();
 
         return view('home.index', compact(
             'featuredServices',
@@ -70,7 +81,10 @@ class HomeController extends Controller
             'featuredServices',
             'testimonials',
             'heroSection',
-            'cardsSections'
+            'cardsSections',
+            'servicesSections',
+            'team'
+
         ));
     }
 }

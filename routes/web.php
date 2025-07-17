@@ -43,10 +43,10 @@ Route::prefix('servicios')->group(function () {
 // Galería
 Route::get('/galeria', [GalleryController::class, 'index'])->name('gallery.index');
 
-// Blog
-Route::prefix('blog')->group(function () {
-    Route::get('/', [BlogController::class, 'index'])->name('blog.index');
-    Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.show');
+// Blog - ACTUALIZADO A /blogs
+Route::prefix('blogs')->name('blogs.')->group(function () {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::get('/{slug}', [BlogController::class, 'show'])->name('show');
 });
 
 // Testimonios
@@ -142,7 +142,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'edit' => 'blog.edit',
         'update' => 'blog.update',
         'destroy' => 'blog.destroy'
-    ]);
+    ])->parameters(['blog' => 'post']); 
     
     // Gestión de Galería
     Route::resource('gallery', GalleryItemController::class)->names([
@@ -153,7 +153,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'edit' => 'gallery.edit',
         'update' => 'gallery.update',
         'destroy' => 'gallery.destroy'
-    ]);
+    ])->parameters(['gallery' => 'galleryItem']); 
     
     // Configuración
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
