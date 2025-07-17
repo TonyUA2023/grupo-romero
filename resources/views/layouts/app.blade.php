@@ -68,7 +68,7 @@
         }
     </style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
     <!-- Header -->
     <header class="bg-white border-b border-gray-100 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
         <div class="max-w-9xl mx-auto px-6 lg:px-8">
