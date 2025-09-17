@@ -31,6 +31,15 @@
         <p class="text-gray-700">{{ $testimonial->content }}</p>
     </div>
     
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Enlace</label>
+        @if($testimonial->link)
+            <a href="{{ $testimonial->link }}" target="_blank" class="text-blue-600 hover:underline">{{ $testimonial->link }}</a>
+        @else
+            <p class="text-gray-600">-</p>
+        @endif
+    </div>
+    
     <div class="grid grid-cols-2 gap-4 mb-4">
         <div>
             <label class="block text-sm font-medium text-gray-700">Estado</label>

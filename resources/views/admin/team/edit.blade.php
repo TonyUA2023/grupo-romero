@@ -6,10 +6,10 @@
 <div class="bg-white shadow rounded-lg p-6">
     <h2 class="text-xl font-semibold text-gray-800 mb-6">Editar Miembro: {{ $teamMember->name }}</h2>
     
-    <form action="{{ route('admin.team.update', $teamMembers) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.team.update', $teamMember) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        @include('admin.team._form')
+        @include('admin.team._form', ['teamMember' => $teamMember])
     </form>
 </div>
 @endsection

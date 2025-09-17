@@ -50,6 +50,12 @@
         </div>
         
         <div class="mb-4">
+            <label for="link" class="block text-sm മലയാളം font-medium text-gray-700">Enlace</label>
+            <input type="url" name="link" id="link" value="{{ old('link', $testimonial->link) }}" 
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        </div>
+        
+        <div class="mb-4">
             <label for="order" class="block text-sm font-medium text-gray-700">Orden</label>
             <input type="number" name="order" id="order" value="{{ old('order', $testimonial->order) }}" min="0" 
                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">

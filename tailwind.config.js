@@ -11,7 +11,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Sen', ...defaultTheme.fontFamily.sans], // Updated to use Sen as the primary sans-serif font
             },
         },
     },

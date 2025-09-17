@@ -7,7 +7,6 @@
     <h2 class="text-xl font-semibold text-gray-800 mb-6">Agregar Nuevo Miembro al Equipo</h2>
     
     <form action="{{ route('admin.team.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
         @include('admin.team._form')
     </form>
 </div>

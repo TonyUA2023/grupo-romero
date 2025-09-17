@@ -9,6 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
@@ -18,67 +19,129 @@ use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialControll
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\GalleryItemController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| RUTAS PÚBLICAS SIN AUTENTICACIÓN
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
-// Rutas Públicas (sin autenticación)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Rutas de Servicios
 Route::prefix('servicios')->group(function () {
     Route::get('/', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/{slug}', [ServiceController::class, 'show'])->name('services.show');
 });
 
-// Galería
 Route::get('/galeria', [GalleryController::class, 'index'])->name('gallery.index');
 
-// Blog - ACTUALIZADO A /blogs
 Route::prefix('blogs')->name('blogs.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
     Route::get('/{slug}', [BlogController::class, 'show'])->name('show');
 });
 
-// Testimonios
 Route::get('/testimonios', [TestimonialController::class, 'index'])->name('testimonials.index');
 
-// Equipo
 Route::get('/equipo', [TeamController::class, 'index'])->name('team.index');
 
-// Contacto
 Route::get('/contacto', [ContactController::class, 'index'])->name('contact');
 Route::post('/contacto', [ContactController::class, 'send'])->name('contact.send');
 
-// Incluir rutas de autenticación de Breeze
+Route::prefix('catalogo')->name('catalog.')->group(function () {
+    Route::get('/', [CatalogController::class, 'index'])->name('index');
+    Route::get('/vista-rapida/{id}', [CatalogController::class, 'quickView'])->name('quickview');
+    Route::get('/buscar-sugerencias', [CatalogController::class, 'searchSuggestions'])->name('search.suggestions');
+    Route::get('/comparar', [CatalogController::class, 'compare'])->name('compare');
+    Route::get('/exportar', [CatalogController::class, 'export'])->name('export');
+    Route::get('/{slug}', [CatalogController::class, 'show'])->name('show'); // debe ir al final dentro del grupo
+});
+
+// Rutas limpias para marcas y categorías (fuera del prefijo para URLs amigables)
+Route::get('/marca/{slug}', [CatalogController::class, 'brand'])->name('catalog.brand');
+Route::get('/categoria/{slug}', [CatalogController::class, 'category'])->name('catalog.category');
+
+/*
+|--------------------------------------------------------------------------
+| RUTAS DE AUTENTICACIÓN Y PANEL USUARIO
+|--------------------------------------------------------------------------
+*/
+
+// Incluye rutas Breeze o las tuyas personalizadas,
+// si no usas Breeze elimina este require o reemplaza por tus rutas.
 require __DIR__.'/auth.php';
 
-// Rutas de Autenticación (Breeze)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Rutas protegidas para usuarios autenticados y verificados
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
 
-Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Panel de Administración (requiere autenticación y rol de admin)
+/*
+|--------------------------------------------------------------------------
+| PANEL DE ADMINISTRACIÓN
+|--------------------------------------------------------------------------
+|
+| Ajusta o crea un middleware 'admin' para restringir acceso a usuarios con rol admin/manager.
+| El middleware debe verificar `auth` y también validar rol / permisos.
+|
+| Es recomendable usar middleware y gates con nombres concretos como 'auth', 'admin.auth', 'can:access-admin' para claridad.
+|
+*/
+
+// Grupo principal admin
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    
-    // Gestión de Servicios
+
+    // Catálogo
+    Route::prefix('catalog')->name('catalog.')->group(function () {
+        Route::resource('products', ProductController::class)->names([
+            'index' => 'products.index',
+            'create' => 'products.create',
+            'store' => 'products.store',
+            'show' => 'products.show',
+            'edit' => 'products.edit',
+            'update' => 'products.update',
+            'destroy' => 'products.destroy'
+        ]);
+        Route::resource('categories', CategoryController::class)->names([
+            'index' => 'categories.index',
+            'create' => 'categories.create',
+            'store' => 'categories.store',
+            'show' => 'categories.show',
+            'edit' => 'categories.edit',
+            'update' => 'categories.update',
+            'destroy' => 'categories.destroy'
+        ]);
+        Route::resource('brands', BrandController::class)->names([
+            'index' => 'brands.index',
+            'create' => 'brands.create',
+            'store' => 'brands.store',
+            'show' => 'brands.show',
+            'edit' => 'brands.edit',
+            'update' => 'brands.update',
+            'destroy' => 'brands.destroy'
+        ]);
+
+        // Rutas adicionales masivas y multimedia
+        Route::post('products/{product}/images', [ProductController::class, 'uploadImages'])->name('products.images.upload');
+        Route::delete('products/images/{image}', [ProductController::class, 'deleteImage'])->name('products.images.delete');
+        Route::post('products/{product}/features', [ProductController::class, 'addFeature'])->name('products.features.add');
+        Route::delete('products/features/{feature}', [ProductController::class, 'deleteFeature'])->name('products.features.delete');
+        Route::post('products/bulk-update', [ProductController::class, 'bulkUpdate'])->name('products.bulk.update');
+        Route::post('products/bulk-delete', [ProductController::class, 'bulkDelete'])->name('products.bulk.delete');
+        Route::post('products/import', [ProductController::class, 'import'])->name('products.import');
+        Route::get('products/export', [ProductController::class, 'export'])->name('products.export');
+    });
+
+    // Otras gestiones administrativas
     Route::resource('services', AdminServiceController::class)->names([
         'index' => 'services.index',
         'create' => 'services.create',
@@ -88,8 +151,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'update' => 'services.update',
         'destroy' => 'services.destroy'
     ]);
-    
-    // Gestión de Páginas
+
     Route::resource('pages', AdminPageController::class)->names([
         'index' => 'pages.index',
         'create' => 'pages.create',
@@ -99,8 +161,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'update' => 'pages.update',
         'destroy' => 'pages.destroy'
     ]);
-    
-    // Gestión de Secciones
+
     Route::resource('sections', SectionController::class)->names([
         'index' => 'sections.index',
         'create' => 'sections.create',
@@ -110,8 +171,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'update' => 'sections.update',
         'destroy' => 'sections.destroy'
     ]);
-    
-    // Gestión de Equipo
+
     Route::resource('team', TeamMemberController::class)->names([
         'index' => 'team.index',
         'create' => 'team.create',
@@ -120,9 +180,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'edit' => 'team.edit',
         'update' => 'team.update',
         'destroy' => 'team.destroy'
-    ]);
-    
-    // Gestión de Testimonios
+    ])->parameters(['team' => 'teamMember']);
+
     Route::resource('testimonials', AdminTestimonialController::class)->names([
         'index' => 'testimonials.index',
         'create' => 'testimonials.create',
@@ -132,8 +191,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'update' => 'testimonials.update',
         'destroy' => 'testimonials.destroy'
     ]);
-    
-    // Gestión de Blog
+
     Route::resource('blog', BlogPostController::class)->names([
         'index' => 'blog.index',
         'create' => 'blog.create',
@@ -143,8 +201,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'update' => 'blog.update',
         'destroy' => 'blog.destroy'
     ])->parameters(['blog' => 'post']); 
-    
-    // Gestión de Galería
+
     Route::resource('gallery', GalleryItemController::class)->names([
         'index' => 'gallery.index',
         'create' => 'gallery.create',
@@ -154,11 +211,23 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'update' => 'gallery.update',
         'destroy' => 'gallery.destroy'
     ])->parameters(['gallery' => 'galleryItem']); 
-    
-    // Configuración
+
+    // Configuración del sitio
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
+
+    // Reportes y analytics - grupo de rutas ordenado
+    Route::prefix('reports')->name('reports.')->group(function () {
+        Route::get('/products', [AdminController::class, 'productsReport'])->name('products');
+        Route::get('/sales', [AdminController::class, 'salesReport'])->name('sales');
+        Route::get('/views', [AdminController::class, 'viewsReport'])->name('views');
+    });
 });
 
-// Rutas de Páginas Dinámicas (DEBE IR AL FINAL)
+/*
+|--------------------------------------------------------------------------
+| RUTAS DINÁMICAS DE PÁGINAS (SIEMPRE AL FINAL)
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/{slug}', [PageController::class, 'show'])->name('pages.show');

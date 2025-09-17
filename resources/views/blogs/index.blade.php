@@ -882,32 +882,6 @@
     </div>
 </aside>
 
-<!-- Newsletter Section -->
-<section class="newsletter-section py-16 md:py-20 relative no-print">
-    <!-- Decorative elements -->
-    <div class="newsletter-decoration w-64 h-64 md:w-80 md:h-80 -top-20 -left-20 opacity-10"></div>
-    <div class="newsletter-decoration w-48 h-48 md:w-60 md:h-60 bottom-10 right-10 opacity-10 animation-delay-400"></div>
-    
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white relative z-10">
-        <h2 class="text-3xl md:text-4xl font-light mb-4 animate-fade-in-up">
-            Mantente <span class="font-semibold">Informado</span>
-        </h2>
-        <p class="text-lg md:text-xl font-light text-white/90 mb-8 animate-fade-in-up animation-delay-200">
-            Suscríbete a nuestro newsletter y recibe los mejores consejos de salud visual
-        </p>
-        <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto animate-fade-in-up animation-delay-400">
-            <input type="email" 
-                   placeholder="Tu correo electrónico" 
-                   class="flex-1 px-6 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/30"
-                   required>
-            <button type="submit" 
-                    class="px-8 py-3 bg-white text-purple-600 rounded-full font-medium hover:bg-gray-100 transition-all hover:shadow-lg">
-                Suscribirse
-            </button>
-        </form>
-    </div>
-</section>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Intersection Observer for animations

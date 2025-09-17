@@ -54,16 +54,21 @@
                     </div>
                     
                     @if($teamMember->social_links)
+                    @php
+                        $socialLinks = json_decode($teamMember->social_links, true);
+                    @endphp
+                    @if(is_array($socialLinks) && count($socialLinks) > 0)
                     <div class="mt-4">
                         <h3 class="font-medium mb-2">Redes Sociales</h3>
                         <div class="flex space-x-3">
-                            @foreach(json_decode($teamMember->social_links, true) as $platform => $url)
+                            @foreach($socialLinks as $platform => $url)
                             <a href="{{ $url }}" target="_blank" class="text-blue-500 hover:text-blue-700">
                                 <i class="fab fa-{{ $platform }} text-lg"></i>
                             </a>
                             @endforeach
                         </div>
                     </div>
+                    @endif
                     @endif
                 </div>
             </div>

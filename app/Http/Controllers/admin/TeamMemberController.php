@@ -29,11 +29,13 @@ class TeamMemberController extends Controller
             'bio' => 'required|string',
             'image' => 'nullable|image|max:2048',
             'specialties' => 'nullable|string|max:255',
-            'education' => 'nullable|string|max:255',
-            'social_links' => 'nullable|json',
+            'education' => 'nullable|string',
             'is_active' => 'boolean',
             'order' => 'integer|min:0'
         ]);
+
+        // Manejar el checkbox is_active
+        $validated['is_active'] = $request->has('is_active');
 
         // Manejar la carga de imágenes
         if ($request->hasFile('image')) {
@@ -41,15 +43,15 @@ class TeamMemberController extends Controller
         }
 
         // Convertir redes sociales a JSON
+        $socialLinks = [];
         if ($request->has('social_links')) {
-            $socialLinks = [];
             foreach ($request->social_links as $link) {
                 if (!empty($link['platform']) && !empty($link['url'])) {
                     $socialLinks[$link['platform']] = $link['url'];
                 }
             }
-            $validated['social_links'] = json_encode($socialLinks);
         }
+        $validated['social_links'] = $socialLinks;
 
         TeamMember::create($validated);
 
@@ -75,11 +77,13 @@ class TeamMemberController extends Controller
             'bio' => 'required|string',
             'image' => 'nullable|image|max:2048',
             'specialties' => 'nullable|string|max:255',
-            'education' => 'nullable|string|max:255',
-            'social_links' => 'nullable|json',
+            'education' => 'nullable|string',
             'is_active' => 'boolean',
             'order' => 'integer|min:0'
         ]);
+
+        // Manejar el checkbox is_active
+        $validated['is_active'] = $request->has('is_active');
 
         // Manejar la carga de imágenes
         if ($request->hasFile('image')) {
@@ -91,15 +95,15 @@ class TeamMemberController extends Controller
         }
 
         // Convertir redes sociales a JSON
+        $socialLinks = [];
         if ($request->has('social_links')) {
-            $socialLinks = [];
             foreach ($request->social_links as $link) {
                 if (!empty($link['platform']) && !empty($link['url'])) {
                     $socialLinks[$link['platform']] = $link['url'];
                 }
             }
-            $validated['social_links'] = json_encode($socialLinks);
         }
+        $validated['social_links'] = $socialLinks;
 
         $teamMember->update($validated);
 

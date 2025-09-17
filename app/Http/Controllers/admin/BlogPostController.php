@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class BlogPostController extends Controller
 {
@@ -120,6 +121,7 @@ class BlogPostController extends Controller
                 Storage::disk('public')->delete($post->featured_image);
             }
             $validated['featured_image'] = $request->file('featured_image')->store('blog', 'public');
+            Log::info('Imagen destacada guardada en: ' . storage_path('app/public/' . $validated['featured_image']));
         }
 
         $post->update($validated);

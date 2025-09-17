@@ -98,12 +98,17 @@
         </div>
 
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="social_links">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
                 Enlaces a Redes Sociales
             </label>
             <div id="socialLinksContainer">
                 @php
-                    $socialLinks = isset($teamMember) ? json_decode($teamMember->social_links, true) : [];
+                    $socialLinks = [];
+                    if (isset($teamMember) && $teamMember->social_links) {
+                        $decoded = json_decode($teamMember->social_links, true);
+                        $socialLinks = is_array($decoded) ? $decoded : [];
+                    }
+                    
                     $socialPlatforms = [
                         'facebook' => 'Facebook',
                         'instagram' => 'Instagram',
@@ -112,33 +117,41 @@
                         'youtube' => 'YouTube',
                         'whatsapp' => 'WhatsApp',
                     ];
+                    $index = 0;
                 @endphp
                 
-                @foreach($socialLinks as $platform => $url)
-                <div class="flex items-center mb-2">
-                    <select name="social_links[{{ $loop->index }}][platform]" 
-                            class="shadow appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2">
-                        <option value="">Seleccionar plataforma</option>
-                        @foreach($socialPlatforms as $key => $label)
-                            <option value="{{ $key }}" {{ $platform == $key ? 'selected' : '' }}>{{ $label }}</option>
-                        @endforeach
-                    </select>
-                    <input type="url" name="social_links[{{ $loop->index }}][url]" 
-                           value="{{ $url }}" 
-                           placeholder="URL"
-                           class="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                </div>
-                @endforeach
+                @if(count($socialLinks) > 0)
+                    @foreach($socialLinks as $platform => $url)
+                    <div class="flex items-center mb-2">
+                        <select name="social_links[{{ $index }}][platform]" 
+                                class="shadow appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2">
+                            <option value="">Seleccionar plataforma</option>
+                            @foreach($socialPlatforms as $key => $label)
+                                <option value="{{ $key }}" {{ $platform == $key ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        <input type="url" name="social_links[{{ $index }}][url]" 
+                               value="{{ $url }}" 
+                               placeholder="URL"
+                               class="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2">
+                        <button type="button" class="remove-social-link text-red-500">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    @php $index++; @endphp
+                    @endforeach
+                @endif
                 
-                <div class="flex items-center mb-2">
-                    <select name="social_links[new][0][platform]" 
+                <!-- Campo vacío para agregar nuevo -->
+                <div class="flex items-center mb-2" id="newSocialLink">
+                    <select name="social_links[{{ $index }}][platform]" 
                             class="shadow appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2">
                         <option value="">Seleccionar plataforma</option>
                         @foreach($socialPlatforms as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach
                     </select>
-                    <input type="url" name="social_links[new][0][url]" 
+                    <input type="url" name="social_links[{{ $index }}][url]" 
                            placeholder="URL"
                            class="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
@@ -146,9 +159,6 @@
             <button type="button" id="addSocialLink" class="mt-2 bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-300">
                 <i class="fas fa-plus mr-1"></i> Añadir otro
             </button>
-            @error('social_links')
-                <p class="text-red-500 text-xs italic">{{ $message }}</p>
-            @enderror
         </div>
     </div>
 </div>
@@ -177,36 +187,43 @@
 </div>
 
 <script>
+    // Contador para nuevos campos
+    let socialLinkIndex = {{ count($socialLinks) }};
+    
     document.getElementById('addSocialLink').addEventListener('click', function() {
+        socialLinkIndex++;
         const container = document.getElementById('socialLinksContainer');
-        const newIndex = container.children.length;
+        const newSocialLink = document.getElementById('newSocialLink');
         
         const div = document.createElement('div');
         div.className = 'flex items-center mb-2';
         div.innerHTML = `
-            <select name="social_links[new][${newIndex}][platform]" 
+            <select name="social_links[${socialLinkIndex}][platform]" 
                     class="shadow appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2">
                 <option value="">Seleccionar plataforma</option>
                 @foreach($socialPlatforms as $key => $label)
                     <option value="{{ $key }}">{{ $label }}</option>
                 @endforeach
             </select>
-            <input type="url" name="social_links[new][${newIndex}][url]" 
+            <input type="url" name="social_links[${socialLinkIndex}][url]" 
                    placeholder="URL"
-                   class="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <button type="button" class="remove-social-link ml-2 text-red-500">
+                   class="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2">
+            <button type="button" class="remove-social-link text-red-500">
                 <i class="fas fa-times"></i>
             </button>
         `;
         
-        container.appendChild(div);
+        container.insertBefore(div, newSocialLink);
     });
 
     // Event delegation para botones de eliminar
     document.getElementById('socialLinksContainer').addEventListener('click', function(e) {
         if (e.target.classList.contains('remove-social-link') || 
             e.target.parentElement.classList.contains('remove-social-link')) {
-            e.target.closest('div').remove();
+            const div = e.target.closest('div');
+            if (div && div.id !== 'newSocialLink') {
+                div.remove();
+            }
         }
     });
 </script>

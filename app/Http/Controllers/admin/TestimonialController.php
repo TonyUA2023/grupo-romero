@@ -28,6 +28,7 @@ class TestimonialController extends Controller
             'content' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
             'image' => 'nullable|image|max:2048',
+            'link' => 'nullable|url|max:255', // Added validation for link (URL, optional)
             'is_active' => 'boolean',
             'order' => 'integer|min:0'
         ]);
@@ -60,6 +61,7 @@ class TestimonialController extends Controller
             'content' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
             'image' => 'nullable|image|max:2048',
+            'link' => 'nullable|url|max:255', // Added validation for link (URL, optional)
             'is_active' => 'boolean',
             'order' => 'integer|min:0'
         ]);

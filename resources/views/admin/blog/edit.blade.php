@@ -67,8 +67,8 @@
                 
                 <div class="mb-4">
                     <label for="tags" class="block text-sm font-medium text-gray-700">Etiquetas</label>
-                    <input type="text" name="tags" id="tags" value="{{ old('tags', $post->tags ? implode(', ', json_decode($post->tags)) : '') }}" 
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <input type="text" name="tags" id="tags" value="{{ old('tags', $post->tags ? implode(', ', $post->tags) : '') }}" 
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                     <p class="mt-1 text-sm text-gray-500">Separadas por comas</p>
                 </div>
                 
