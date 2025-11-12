@@ -48,7 +48,6 @@
     @mouseleave="if (!autoplay) startAutoplay()"
     class="relative h-[75vh] min-h-[450px] max-h-[650px] w-full overflow-hidden text-white flex items-center">
 
-    <!-- Contenedor de Imágenes de Fondo (Slides) -->
     <div class="absolute inset-0 z-0">
         @foreach($heroSections as $index => $section)
             <div x-show="activeSlide === {{ $index + 1 }}" 
@@ -60,7 +59,7 @@
                  x-transition:leave-end="opacity-0 scale-105"
                  class="absolute inset-0"
                  style="display: none;"> {{-- Evita el flash de contenido al cargar --}}
-                <img src="{{ asset('storage/' . $section->image) }}"
+                <img src="{{ asset('storage/'. $section->image) }}"
                      alt="{{ $section->title ?? 'Cuidado visual profesional' }}"
                      class="w-full h-full object-cover"
                      loading="{{ $index === 0 ? 'eager' : 'lazy' }}">
@@ -68,10 +67,8 @@
         @endforeach
     </div>
 
-    <!-- Overlay de Degradado para Legibilidad -->
     <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
 
-    <!-- Contenedor de Contenido -->
     <div class="relative z-20 container mx-auto px-6 lg:px-8 w-full">
         <div class="max-w-xl text-left min-h-[280px] relative">
             @foreach($heroSections as $index => $section)
@@ -85,6 +82,7 @@
                      class="w-full"
                      style="display: none;">
                     
+                    {{-- Tipografía Poppins (font-bold) ya coincide con el manual [cite: 161, 185] --}}
                     <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
                         {{ $section->title ?? 'Visión que define tu estilo' }}
                     </h1>
@@ -94,8 +92,14 @@
                     </p>
                     
                     <div class="mt-10 flex items-center gap-x-6">
+                        {{-- 
+                            CAMBIO DE COLOR:
+                            - bg-[#B91C1C] -> bg-[#004FFF] (Azul Intenso) 
+                            - hover:bg-[#991B1B] -> hover:bg-[#003cb3] (Tono azul más oscuro)
+                            - focus-visible:outline-[#B91C1C] -> focus-visible:outline-[#004FFF] 
+                        --}}
                         <a href="{{ $section->data['link'] ?? '#' }}"
-                           class="rounded-md bg-[#B91C1C] px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#991B1B] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B91C1C] transition-colors duration-300">
+                           class="rounded-md bg-[#004FFF] px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#003cb3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#004FFF] transition-colors duration-300">
                            {{ $section->data['button_text'] ?? 'Agendar una Cita' }}
                         </a>
                         @if(isset($section->data['secondary_link']) && isset($section->data['secondary_button_text']))
@@ -109,10 +113,8 @@
         </div>
     </div>
 
-    <!-- Controles y Barra de Progreso -->
     <div class="absolute bottom-0 left-0 w-full z-30">
         <div class="container mx-auto px-6 lg:px-8 flex justify-between items-center py-4">
-            <!-- Paginación (Dots) -->
             <div class="flex space-x-3">
                 @foreach($heroSections as $index => $section)
                     <button @click="selectSlide({{ $index + 1 }})" 
@@ -121,7 +123,6 @@
                 @endforeach
             </div>
 
-            <!-- Controles de Navegación -->
             <div class="flex items-center space-x-2">
                 <button @click="prevSlide()" aria-label="Anterior" class="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
@@ -132,9 +133,12 @@
             </div>
         </div>
         
-        <!-- Barra de Progreso de Autoplay -->
         <div class="w-full h-1 bg-white/20">
-            <div class="h-1 bg-[#B91C1C]" 
+            {{-- 
+                CAMBIO DE COLOR:
+                - bg-[#B91C1C] -> bg-[#E2432C] (Rojo Vibrante) 
+            --}}
+            <div class="h-1 bg-[#E2432C]" 
                  :style="`transition: width ${intervalTime}ms linear; width: ${progress}%`">
             </div>
         </div>
@@ -142,10 +146,15 @@
 
 </section>
 @else
-{{-- Fallback por si no hay hero sections definidas --}}
-<section class="relative h-96 bg-gray-800 flex items-center justify-center text-white">
+{{-- 
+    Fallback por si no hay hero sections definidas 
+    CAMBIO DE COLOR Y TEXTO:
+    - bg-gray-800 -> bg-[#606060] (Gris Oscuro) 
+    - Texto actualizado a "Clínica Laurent" 
+--}}
+<section class="relative h-96 bg-[#606060] flex items-center justify-center text-white">
     <div class="text-center">
-        <h1 class="text-4xl font-bold">Bienvenido a Grupo Romero</h1>
+        <h1 class="text-4xl font-bold">Bienvenido a Clínica Laurent</h1>
         <p class="mt-4 text-lg">Configura la sección principal desde el panel de administración.</p>
     </div>
 </section>

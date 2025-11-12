@@ -3,8 +3,12 @@
     Este componente presenta las colecciones en un formato de pantalla dividida,
     inspirado en campañas de moda de alta costura. El diseño es limpio,
     directo y se enfoca completamente en la imagen.
+
+    CAMBIOS:
+    - 'bg-black' -> 'bg-dark' (Gris Oscuro #606060)
+    - 'bg-black/70' -> 'bg-dark/70' (Gris Oscuro #606060 con opacidad)
 --}}
-<section id="gender-catalog" class="w-full h-auto lg:h-screen bg-black">
+<section id="gender-catalog" class="w-full h-auto lg:h-screen bg-dark">
     {{-- 
         Grid sin espacios que se adapta a 3 columnas en escritorio 
         y a filas apiladas en móvil.
@@ -18,12 +22,13 @@
                 
                 {{-- Imagen de Fondo con Efecto de Zoom Sutil --}}
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-105"
-                     style="background-image: url('{{ $menCoverProduct->model_image_url ?? asset('storage/' . $menCoverProduct->featured_image) }}')">
+                     style="background-image: url('{{ $menCoverProduct->model_image_url ?? asset('storage/'. $menCoverProduct->featured_image) }}')">
                 </div>
                 
                 {{-- Contenido de la Tarjeta con fondo sólido para el texto --}}
                 <div class="relative h-full flex flex-col justify-end items-start p-8 text-white">
-                    <div class="bg-black/70 backdrop-blur-sm px-5 py-3">
+                    {{-- CAMBIO: de 'bg-black/70' a 'bg-dark/70' --}}
+                    <div class="bg-dark/70 backdrop-blur-sm px-5 py-3">
                         <h3 class="font-light uppercase tracking-[0.2em] text-sm">
                             Hombres
                         </h3>
@@ -38,11 +43,12 @@
                class="group relative overflow-hidden h-[60vh] lg:h-screen block">
                 
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-105"
-                     style="background-image: url('{{ $womenCoverProduct->model_image_url ?? asset('storage/' . $womenCoverProduct->featured_image) }}')">
+                     style="background-image: url('{{ $womenCoverProduct->model_image_url ?? asset('storage/'. $womenCoverProduct->featured_image) }}')">
                 </div>
                 
                 <div class="relative h-full flex flex-col justify-end items-start p-8 text-white">
-                     <div class="bg-black/70 backdrop-blur-sm px-5 py-3">
+                     {{-- CAMBIO: de 'bg-black/70' a 'bg-dark/70' --}}
+                     <div class="bg-dark/70 backdrop-blur-sm px-5 py-3">
                         <h3 class="font-light uppercase tracking-[0.2em] text-sm">
                             Mujeres
                         </h3>
@@ -57,11 +63,12 @@
                class="group relative overflow-hidden h-[60vh] lg:h-screen block">
                 
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-105"
-                     style="background-image: url('{{ $kidCoverProduct->model_image_url ?? asset('storage/' . $kidCoverProduct->featured_image) }}')">
+                     style="background-image: url('{{ $kidCoverProduct->model_image_url ?? asset('storage/'. $kidCoverProduct->featured_image) }}')">
                 </div>
                 
                 <div class="relative h-full flex flex-col justify-end items-start p-8 text-white">
-                    <div class="bg-black/70 backdrop-blur-sm px-5 py-3">
+                    {{-- CAMBIO: de 'bg-black/70' a 'bg-dark/70' --}}
+                    <div class="bg-dark/70 backdrop-blur-sm px-5 py-3">
                         <h3 class="font-light uppercase tracking-[0.2em] text-sm">
                             Niños
                         </h3>

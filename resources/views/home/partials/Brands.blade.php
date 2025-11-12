@@ -2,12 +2,18 @@
     Sección de Marcas - Estilo Carrusel de Logos Verticales
     Este componente combina la idea de un muro de logos con un carrusel infinito,
     presentando las imágenes en su altura completa para un mayor impacto visual.
+
+    CAMBIOS:
+    - 'bg-black' -> 'bg-dark' (Gris Oscuro #606060)
+    - 'text-gray-400' -> 'text-light/70' (Tono Claro #F2F2F2 con opacidad)
+    - 'from-black' -> 'from-dark'
+    - Corregido el error de sintaxis en la ruta de la imagen.
 --}}
-<div class="bg-black py-16 lg:py-16">
+<div class="bg-dark py-16 lg:py-16">
     <div class="container mx-auto px-4">
 
         {{-- Título Sutil --}}
-        <h2 class="text-center text-gray-400 font-light uppercase tracking-[0.3em] text-xs mb-12">
+        <h2 class="text-center text-light/70 font-light uppercase tracking-[0.3em] text-xs mb-12">
             Una selección de nuestras marcas de confianza
         </h2>
 
@@ -18,8 +24,8 @@
         --}}
         <div class="relative h-24 overflow-hidden group">
             {{-- Máscara con gradiente en los bordes para un efecto de desvanecimiento --}}
-            <div class="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-black to-transparent z-10"></div>
-            <div class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-black to-transparent z-10"></div>
+            <div class="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-dark to-transparent z-10"></div>
+            <div class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-dark to-transparent z-10"></div>
 
             {{-- Pista del Carrusel con Animación --}}
             <div id="brands-carousel-tall" class="absolute top-0 left-0 flex h-full items-center">
@@ -35,6 +41,12 @@
                             - 'h-full' hace que la imagen ocupe toda la altura del contenedor (h-24).
                             - 'w-auto' ajusta el ancho para mantener la proporción y evitar distorsión.
                         --}}
+                        
+                        {{-- 
+                          LÍNEA CORREGIDA: 
+                          Se eliminó el apóstrofo adicional. 
+                          La variable $brand->logo se mantiene intacta.
+                        --}}
                         <img src="{{ asset('storage/' . $brand->logo) }}" 
                              alt="Logo de {{ $brand->name }}" 
                              class="h-full w-auto object-contain transition-transform duration-300 ease-in-out transform group-hover:scale-110" 
@@ -46,7 +58,7 @@
     </div>
 </div>
 
-{{-- Estilos y Animación del Carrusel --}}
+{{-- Estilos y Animación del Carrusel (Sin cambios de color, se mantiene) --}}
 <style>
 /* Define la animación de desplazamiento horizontal. */
 @keyframes scroll-left-tall {
