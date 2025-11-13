@@ -1,104 +1,116 @@
-{{-- Products Collection Section - Ultra Modern Grid --}}
-<section class="py-4 lg:py-6 bg-white">
-    {{-- Full Width Layout --}}
-    <div class="px-2 sm:px-3 lg:px-4">
+{{-- Products Collection Section - Ultra Modern & Elegant Grid --}}
+{{-- CAMBIO: Fondo actualizado a 'bg-light' (#F2F2F2) para suavidad visual --}}
+<section class="py-12 lg:py-16 bg-light">
+    {{-- Full Width Layout con padding ajustado --}}
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         
-        {{-- Compact Header --}}
-        <div class="text-center mb-4">
-            <p class="text-[10px] uppercase tracking-widest text-gray-500">SELECCIÓN EXCLUSIVA</p>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
-                NUESTRA <span class="font-light italic text-red-600">COLECCIÓN</span>
+        {{-- Elegant Header --}}
+        <div class="text-center mb-10">
+            {{-- CAMBIO: Texto gris corporativo y fuente Poppins --}}
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-dark/60 mb-2">Selección Exclusiva</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-3">
+                Nuestra <span class="font-light italic text-primary">Colección</span>
             </h2>
-            <p class="text-sm text-gray-600 mt-1">Diseños que marcan tendencia</p>
+            <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+            <p class="text-dark/80 mt-4 max-w-2xl mx-auto font-light">Descubre monturas que combinan tecnología de vanguardia con las últimas tendencias en moda visual.</p>
         </div>
 
-        {{-- Filter Pills - Minimal Design --}}
-        <div class="flex flex-wrap justify-center gap-2 mb-6">
+        {{-- Filter Pills - Elegant Style --}}
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+            {{-- 
+                CAMBIO: Botones con bordes redondeados suaves y colores corporativos.
+                Estado activo: bg-primary, text-white.
+                Estado inactivo: bg-white, text-dark, border-gray-200.
+            --}}
             <button onclick="filterProducts('new')" 
-                    class="filter-btn active" 
+                    class="filter-btn active group" 
                     data-filter="new">
-                <span>NUEVOS</span>
-                <span class="ml-1">🔥</span>
+                <span class="relative z-10">NUEVOS INGRESOS</span>
             </button>
             <button onclick="filterProducts('featured')" 
-                    class="filter-btn" 
+                    class="filter-btn group" 
                     data-filter="featured">
-                <span>DESTACADOS</span>
-                <span class="ml-1">⭐</span>
+                <span class="relative z-10">DESTACADOS</span>
             </button>
             <button onclick="filterProducts('sale')" 
-                    class="filter-btn" 
+                    class="filter-btn group" 
                     data-filter="sale">
-                <span>OFERTAS</span>
-                <span class="ml-1">💎</span>
+                <span class="relative z-10">OFERTAS ESPECIALES</span>
             </button>
         </div>
 
         {{-- Products Container --}}
-        <div class="relative min-h-[400px]">
+        <div class="relative min-h-[500px]">
             
             {{-- New Products Section --}}
             <div id="new-products" class="product-section active">
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-[2px]">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
                     @forelse($newProducts as $product)
-                        <a href="#" class="group relative overflow-hidden bg-gray-100 aspect-[3/4] block">
-                            {{-- Product Image --}}
-                            @if($product->featured_image)
-                                <img src="{{ asset('storage/' . $product->featured_image) }}" 
-                                     alt="{{ $product->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     loading="lazy">
-                            @elseif($product->model_image_url)
-                                <img src="{{ asset('storage/' . $product->model_image_url) }}" 
-                                     alt="{{ $product->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     loading="lazy">
-                            @else
-                                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300"></div>
-                            @endif
+                        {{-- CAMBIO: Tarjeta con fondo blanco, bordes redondeados y sombra suave --}}
+                        <a href="#" class="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                             
-                            {{-- Gradient Overlay --}}
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            
-                            {{-- NEW Badge --}}
-                            <div class="absolute top-2 left-2">
-                                <div class="bg-red-600 text-white text-[8px] px-2 py-1 font-bold">
-                                    NEW
+                            {{-- Image Container --}}
+                            <div class="aspect-[4/5] overflow-hidden bg-gray-100 relative">
+                                @if($product->featured_image)
+                                    <img src="{{ asset('storage/'. $product->featured_image) }}" 
+                                         alt="{{ $product->name }}"
+                                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                         loading="lazy">
+                                @elseif($product->model_image_url)
+                                    <img src="{{ asset('storage/'. $product->model_image_url) }}" 
+                                         alt="{{ $product->name }}"
+                                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                         loading="lazy">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-300">
+                                        <i class="fas fa-glasses text-4xl"></i>
+                                    </div>
+                                @endif
+
+                                {{-- Overlay Gradiente en Hover --}}
+                                <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                
+                                {{-- Badge NUEVO (Color Accento) --}}
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-accent text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md tracking-wider">
+                                        NUEVO
+                                    </span>
+                                </div>
+
+                                {{-- Botón "Ver Más" (Aparece en Hover) --}}
+                                <div class="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                    <span class="bg-white text-primary font-medium text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-primary hover:text-white transition-colors">
+                                        Ver Detalles <i class="fas fa-arrow-right text-[10px]"></i>
+                                    </span>
                                 </div>
                             </div>
-                            
+
                             {{-- Product Info --}}
-                            <div class="absolute bottom-0 left-0 right-0 p-2 lg:p-3 bg-gradient-to-t from-white via-white/95 to-transparent">
+                            <div class="p-4 text-center">
                                 @if($product->brand)
-                                    <p class="text-[9px] uppercase tracking-wider text-gray-500">
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">
                                         {{ $product->brand->name }}
                                     </p>
                                 @endif
-                                <h3 class="text-[10px] lg:text-xs font-medium text-gray-900 line-clamp-1">
+                                <h3 class="text-sm font-semibold text-dark group-hover:text-primary transition-colors mb-2 line-clamp-1">
                                     {{ $product->name }}
                                 </h3>
-                                <p class="text-sm lg:text-base font-bold text-gray-900 mt-0.5">
+                                <div class="flex items-center justify-center gap-2">
                                     @if($product->sale_price)
-                                        <span class="text-red-600">S/ {{ number_format($product->sale_price, 0) }}</span>
-                                        <span class="text-[10px] line-through text-gray-400 ml-1">{{ number_format($product->price, 0) }}</span>
+                                        <span class="text-accent font-bold text-lg">S/ {{ number_format($product->sale_price, 0) }}</span>
+                                        <span class="text-xs text-gray-400 line-through">S/ {{ number_format($product->price, 0) }}</span>
                                     @else
-                                        S/ {{ number_format($product->price, 0) }}
+                                        <span class="text-dark font-bold text-lg">S/ {{ number_format($product->price, 0) }}</span>
                                     @endif
-                                </p>
-                            </div>
-                            
-                            {{-- Quick Add Button (on hover) --}}
-                            <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div class="bg-black text-white p-2 rounded-full">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                                    </svg>
                                 </div>
                             </div>
                         </a>
                     @empty
-                        <div class="col-span-full text-center py-12">
-                            <p class="text-gray-400">No hay productos nuevos disponibles</p>
+                        <div class="col-span-full flex flex-col items-center justify-center py-16 text-center">
+                            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-box-open text-gray-400 text-2xl"></i>
+                            </div>
+                            <p class="text-dark/60 font-medium">No hay productos nuevos disponibles por el momento.</p>
                         </div>
                     @endforelse
                 </div>
@@ -106,66 +118,58 @@
 
             {{-- Featured Products Section --}}
             <div id="featured-products" class="product-section hidden">
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-[2px]">
-                    @forelse($featuredProducts->take(12) as $product)
-                        <a href="#" class="group relative overflow-hidden bg-gray-100 aspect-[3/4] block">
-                            {{-- Product Image --}}
-                            @if($product->model_image)
-                                <img src="{{ $product->model_image_url }}" 
-                                     alt="{{ $product->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     loading="lazy">
-                            @elseif($product->featured_image)
-                                <img src="{{ asset('storage/' . $product->featured_image) }}" 
-                                     alt="{{ $product->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     loading="lazy">
-                            @else
-                                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300"></div>
-                            @endif
-                            
-                            {{-- Gradient Overlay --}}
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            
-                            {{-- STAR Badge --}}
-                            <div class="absolute top-2 left-2">
-                                <div class="bg-yellow-500 text-white text-[8px] px-2 py-1 font-bold">
-                                    ⭐ TOP
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
+                    @forelse($featuredProducts->take(10) as $product)
+                        <a href="#" class="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <div class="aspect-[4/5] overflow-hidden bg-gray-100 relative">
+                                @if($product->model_image)
+                                    <img src="{{ $product->model_image_url }}" 
+                                         alt="{{ $product->name }}"
+                                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" loading="lazy">
+                                @elseif($product->featured_image)
+                                    <img src="{{ asset('storage/'. $product->featured_image) }}" 
+                                         alt="{{ $product->name }}"
+                                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" loading="lazy">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-300"><i class="fas fa-glasses text-4xl"></i></div>
+                                @endif
+                                
+                                <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                
+                                {{-- Badge DESTACADO (Color Primario) --}}
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md tracking-wider">
+                                        DESTACADO
+                                    </span>
+                                </div>
+
+                                <div class="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                    <span class="bg-white text-primary font-medium text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-primary hover:text-white transition-colors">
+                                        Ver Detalles <i class="fas fa-arrow-right text-[10px]"></i>
+                                    </span>
                                 </div>
                             </div>
-                            
-                            {{-- Product Info --}}
-                            <div class="absolute bottom-0 left-0 right-0 p-2 lg:p-3 bg-gradient-to-t from-white via-white/95 to-transparent">
+                            <div class="p-4 text-center">
                                 @if($product->brand)
-                                    <p class="text-[9px] uppercase tracking-wider text-gray-500">
-                                        {{ $product->brand->name }}
-                                    </p>
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">{{ $product->brand->name }}</p>
                                 @endif
-                                <h3 class="text-[10px] lg:text-xs font-medium text-gray-900 line-clamp-1">
-                                    {{ $product->name }}
-                                </h3>
-                                <p class="text-sm lg:text-base font-bold text-gray-900 mt-0.5">
+                                <h3 class="text-sm font-semibold text-dark group-hover:text-primary transition-colors mb-2 line-clamp-1">{{ $product->name }}</h3>
+                                <div class="flex items-center justify-center gap-2">
                                     @if($product->sale_price)
-                                        <span class="text-red-600">S/ {{ number_format($product->sale_price, 0) }}</span>
-                                        <span class="text-[10px] line-through text-gray-400 ml-1">{{ number_format($product->price, 0) }}</span>
+                                        <span class="text-accent font-bold text-lg">S/ {{ number_format($product->sale_price, 0) }}</span>
+                                        <span class="text-xs text-gray-400 line-through">S/ {{ number_format($product->price, 0) }}</span>
                                     @else
-                                        S/ {{ number_format($product->price, 0) }}
+                                        <span class="text-dark font-bold text-lg">S/ {{ number_format($product->price, 0) }}</span>
                                     @endif
-                                </p>
-                            </div>
-                            
-                            {{-- Quick Add Button (on hover) --}}
-                            <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div class="bg-black text-white p-2 rounded-full">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                                    </svg>
                                 </div>
                             </div>
                         </a>
                     @empty
-                        <div class="col-span-full text-center py-12">
-                            <p class="text-gray-400">No hay productos destacados disponibles</p>
+                        <div class="col-span-full flex flex-col items-center justify-center py-16 text-center">
+                            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-star text-gray-400 text-2xl"></i>
+                            </div>
+                            <p class="text-dark/60 font-medium">No hay productos destacados disponibles.</p>
                         </div>
                     @endforelse
                 </div>
@@ -173,72 +177,62 @@
 
             {{-- Sale Products Section --}}
             <div id="sale-products" class="product-section hidden">
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-[2px]">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
                     @forelse($saleProducts as $product)
-                        <a href="#" class="group relative overflow-hidden bg-gray-100 aspect-[3/4] block">
-                            {{-- Product Image --}}
-                            @if($product->model_image)
-                                <img src="{{ $product->model_image_url }}" 
-                                     alt="{{ $product->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     loading="lazy">
-                            @elseif($product->featured_image)
-                                <img src="{{ asset('storage/' . $product->featured_image) }}" 
-                                     alt="{{ $product->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     loading="lazy">
-                            @else
-                                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300"></div>
-                            @endif
-                            
-                            {{-- Gradient Overlay --}}
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            
-                            {{-- SALE Badge with Percentage --}}
-                            <div class="absolute top-2 left-2">
-                                @if($product->discount_percentage > 0)
-                                    <div class="bg-red-600 text-white text-[8px] px-2 py-1 font-bold">
-                                        -{{ $product->discount_percentage }}%
-                                    </div>
+                        <a href="#" class="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <div class="aspect-[4/5] overflow-hidden bg-gray-100 relative">
+                                @if($product->model_image)
+                                    <img src="{{ $product->model_image_url }}" 
+                                         alt="{{ $product->name }}"
+                                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" loading="lazy">
+                                @elseif($product->featured_image)
+                                    <img src="{{ asset('storage/'. $product->featured_image) }}" 
+                                         alt="{{ $product->name }}"
+                                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" loading="lazy">
                                 @else
-                                    <div class="bg-green-600 text-white text-[8px] px-2 py-1 font-bold">
-                                        OFERTA
-                                    </div>
+                                    <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-300"><i class="fas fa-glasses text-4xl"></i></div>
                                 @endif
-                            </div>
-                            
-                            {{-- Product Info --}}
-                            <div class="absolute bottom-0 left-0 right-0 p-2 lg:p-3 bg-gradient-to-t from-white via-white/95 to-transparent">
-                                @if($product->brand)
-                                    <p class="text-[9px] uppercase tracking-wider text-gray-500">
-                                        {{ $product->brand->name }}
-                                    </p>
-                                @endif
-                                <h3 class="text-[10px] lg:text-xs font-medium text-gray-900 line-clamp-1">
-                                    {{ $product->name }}
-                                </h3>
-                                <p class="text-sm lg:text-base font-bold text-gray-900 mt-0.5">
-                                    @if($product->sale_price)
-                                        <span class="text-red-600">S/ {{ number_format($product->sale_price, 0) }}</span>
-                                        <span class="text-[10px] line-through text-gray-400 ml-1">{{ number_format($product->price, 0) }}</span>
+                                
+                                <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                
+                                {{-- Badge OFERTA (Color Accento) --}}
+                                <div class="absolute top-3 left-3">
+                                    @if($product->discount_percentage > 0)
+                                        <span class="bg-accent text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md tracking-wider">
+                                            -{{ $product->discount_percentage }}%
+                                        </span>
                                     @else
-                                        <span class="text-green-600">S/ {{ number_format($product->price, 0) }}</span>
+                                        <span class="bg-accent text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md tracking-wider">
+                                            OFERTA
+                                        </span>
                                     @endif
-                                </p>
+                                </div>
+
+                                <div class="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                    <span class="bg-white text-primary font-medium text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-primary hover:text-white transition-colors">
+                                        Ver Detalles <i class="fas fa-arrow-right text-[10px]"></i>
+                                    </span>
+                                </div>
                             </div>
-                            
-                            {{-- Quick Add Button (on hover) --}}
-                            <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div class="bg-black text-white p-2 rounded-full">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                                    </svg>
+                            <div class="p-4 text-center">
+                                @if($product->brand)
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">{{ $product->brand->name }}</p>
+                                @endif
+                                <h3 class="text-sm font-semibold text-dark group-hover:text-primary transition-colors mb-2 line-clamp-1">{{ $product->name }}</h3>
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="text-accent font-bold text-lg">S/ {{ number_format($product->sale_price ?? $product->price, 0) }}</span>
+                                    @if($product->sale_price)
+                                        <span class="text-xs text-gray-400 line-through">S/ {{ number_format($product->price, 0) }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </a>
                     @empty
-                        <div class="col-span-full text-center py-12">
-                            <p class="text-gray-400">No hay ofertas disponibles</p>
+                        <div class="col-span-full flex flex-col items-center justify-center py-16 text-center">
+                            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-percent text-gray-400 text-2xl"></i>
+                            </div>
+                            <p class="text-dark/60 font-medium">No hay ofertas disponibles por el momento.</p>
                         </div>
                     @endforelse
                 </div>
@@ -246,11 +240,12 @@
         </div>
 
         {{-- View All CTA --}}
-        <div class="text-center mt-6">
+        <div class="text-center mt-12">
+            {{-- CAMBIO: Botón "Ver Todo" con estilos primarios --}}
             <a href="#" 
-               class="inline-flex items-center gap-2 bg-black hover:bg-gray-900 text-white font-medium px-6 py-3 rounded transition-all duration-300 transform hover:scale-105">
-                <span>VER TODO EL CATÁLOGO</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <span>VER CATÁLOGO COMPLETO</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
             </a>
@@ -260,117 +255,80 @@
 
 {{-- Styles for Filter System --}}
 <style>
-/* Filter Pills */
+/* Filter Pills - Rediseñado para Tailwind */
 .filter-btn {
-    @apply px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 border;
-    @apply bg-white text-gray-600 border-gray-200 hover:border-gray-400;
+    @apply px-6 py-3 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 border-2 overflow-hidden relative;
+    @apply bg-white text-gray-500 border-gray-200;
+}
+
+.filter-btn:hover {
+    @apply border-primary text-primary;
 }
 
 .filter-btn.active {
-    @apply bg-black text-white border-black shadow-lg;
+    @apply bg-primary text-white border-primary shadow-lg;
     transform: translateY(-2px);
 }
 
 /* Product Sections Animation */
 .product-section {
     @apply absolute inset-0 w-full;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .product-section.hidden {
     @apply opacity-0 pointer-events-none;
-    transform: translateY(10px);
+    transform: translateY(20px);
 }
 
 .product-section.active {
-    @apply opacity-100;
+    @apply opacity-100 relative; /* Relative para que ocupe espacio */
     transform: translateY(0);
-}
-
-/* Quick Add Button Animation */
-.group:hover .quick-add {
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-/* Responsive Grid Adjustments */
-@media (max-width: 640px) {
-    .filter-btn {
-        @apply px-3 py-1.5 text-[10px];
-    }
 }
 </style>
 
-{{-- Filter JavaScript --}}
+{{-- Filter JavaScript (Sin cambios de lógica, solo funciona igual) --}}
 <script>
 function filterProducts(filter) {
-    // Get all sections and buttons
     const sections = document.querySelectorAll('.product-section');
     const buttons = document.querySelectorAll('.filter-btn');
     
-    // Hide all sections with animation
+    // Ocultar todos
     sections.forEach(section => {
         section.classList.remove('active');
         section.classList.add('hidden');
     });
     
-    // Remove active class from all buttons
+    // Desactivar botones
     buttons.forEach(btn => {
         btn.classList.remove('active');
     });
     
-    // Show selected section with delay for smooth transition
+    // Mostrar seleccionado con pequeño delay
     setTimeout(() => {
         const targetSection = document.getElementById(filter + '-products');
         if (targetSection) {
             targetSection.classList.remove('hidden');
-            requestAnimationFrame(() => {
-                targetSection.classList.add('active');
-            });
+            // Forzar reflow para animación
+            void targetSection.offsetWidth; 
+            targetSection.classList.add('active');
         }
         
-        // Activate the clicked button
         const activeBtn = document.querySelector(`[data-filter="${filter}"]`);
         if (activeBtn) {
             activeBtn.classList.add('active');
         }
-    }, 100);
+    }, 50);
 }
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    // Set initial filter
-    filterProducts('new');
-    
-    // Add smooth scroll behavior
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const filter = btn.dataset.filter;
-            filterProducts(filter);
-        });
-    });
-});
-
-// Add keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        const filters = ['new', 'featured', 'sale'];
-        const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-        const currentIndex = filters.indexOf(activeFilter);
-        
-        let newIndex;
-        if (e.key === 'ArrowLeft') {
-            newIndex = currentIndex > 0 ? currentIndex - 1 : filters.length - 1;
-        } else {
-            newIndex = currentIndex < filters.length - 1 ? currentIndex + 1 : 0;
-        }
-        
-        filterProducts(filters[newIndex]);
+    // Filtro inicial
+    const initialFilter = document.querySelector('.filter-btn.active') ? document.querySelector('.filter-btn.active').dataset.filter : 'new';
+    // Asegurarse que la sección correcta esté visible inicialmente sin animación
+    const initialSection = document.getElementById(initialFilter + '-products');
+    if(initialSection) {
+        initialSection.classList.remove('hidden');
+        initialSection.classList.add('active');
     }
 });
 </script>

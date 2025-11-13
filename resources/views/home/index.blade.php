@@ -4,9 +4,6 @@
 @section('description', 'Centro de optometría de vanguardia con tecnología avanzada. Diagnósticos precisos, tratamientos personalizados y atención excepcional.')
 
 @section('content')
-
-{{-- ===== INCLUIR PARTIALS DE SECCIONES ===== --}}
-
 {{-- Hero Section --}}
 @include('home.partials.Hero')
 
@@ -17,32 +14,13 @@
 {{-- Video Spotlight Section --}}
 @include('home.partials.VideoSpotlight')
 
-
-
-{{-- Products Section (General/Featured) --}}
-@include('home.partials.ProductCategories')
-
 {{-- Products Section (General/Featured) --}}
 @include('home.partials.Products')
 
-{{-- NUEVAS SECCIONES DE PRODUCTOS POR GÉNERO --}}
-
-
-
-{{-- Services Section --}}
 @include('home.partials.Services')
-
-{{-- Team Section --}}
-@include('home.partials.Team')
-
-{{-- Facilities Section --}}
-@include('home.partials.Facilities')
 
 {{-- Blog Section --}}
 @include('home.partials.Blog')
-
-{{-- Video Tour Section --}}
-@include('home.partials.VideoTour')
 
 {{-- Gallery Section --}}
 @include('home.partials.Gallery')

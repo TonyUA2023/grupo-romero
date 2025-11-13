@@ -1,55 +1,48 @@
-{{-- 
-    Sección de Marcas - Estilo Carrusel de Logos Verticales
-    Este componente combina la idea de un muro de logos con un carrusel infinito,
-    presentando las imágenes en su altura completa para un mayor impacto visual.
+{{-- ============================================
+   SECCIÓN DE MARCAS – PREMIUM BLACK EDITION
+   ============================================ --}}
+<div class="bg-black py-20 relative overflow-hidden">
 
-    CAMBIOS:
-    - 'bg-black' -> 'bg-dark' (Gris Oscuro #606060)
-    - 'text-gray-400' -> 'text-light/70' (Tono Claro #F2F2F2 con opacidad)
-    - 'from-black' -> 'from-dark'
-    - Corregido el error de sintaxis en la ruta de la imagen.
---}}
-<div class="bg-dark py-16 lg:py-16">
-    <div class="container mx-auto px-4">
+    {{-- Glow sutil detrás del título --}}
+    <div class="absolute inset-0 pointer-events-none opacity-20 blur-3xl"
+         style="background: radial-gradient(circle at center, #ffffff20 0%, transparent 70%);">
+    </div>
 
-        {{-- Título Sutil --}}
-        <h2 class="text-center text-light/70 font-light uppercase tracking-[0.3em] text-xs mb-12">
-            Una selección de nuestras marcas de confianza
+    <div class="container mx-auto px-4 relative z-10">
+
+        {{-- Título elegante y minimal --}}
+        <h2 class="text-center text-[#e5e5e5]/60 font-light uppercase tracking-[0.35em] text-xs mb-14">
+            Marcas que confían en nosotros
         </h2>
 
-        {{-- 
-            Contenedor del Carrusel
-            - Se define una altura fija (h-24) que servirá como base para las imágenes.
-            - 'overflow-hidden' es crucial para que el carrusel funcione.
-        --}}
+        {{-- Contenedor principal del carrusel --}}
         <div class="relative h-24 overflow-hidden group">
-            {{-- Máscara con gradiente en los bordes para un efecto de desvanecimiento --}}
-            <div class="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-dark to-transparent z-10"></div>
-            <div class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-dark to-transparent z-10"></div>
 
-            {{-- Pista del Carrusel con Animación --}}
+            {{-- Gradiente izquierda --}}
+            <div class="absolute top-0 left-0 w-32 h-full 
+                        bg-gradient-to-r from-black via-black/80 to-transparent z-10"></div>
+
+            {{-- Gradiente derecha --}}
+            <div class="absolute top-0 right-0 w-32 h-full 
+                        bg-gradient-to-l from-black via-black/80 to-transparent z-10"></div>
+
+            {{-- Track del carrusel --}}
             <div id="brands-carousel-tall" class="absolute top-0 left-0 flex h-full items-center">
+
                 @php
-                    // Duplicamos el array de marcas para el loop infinito.
                     $doubledBrands = $brands->concat($brands);
                 @endphp
 
                 @foreach($doubledBrands as $brand)
-                    <div class="flex-shrink-0 h-full flex justify-center items-center mx-5">
-                        {{-- 
-                            Logo de la marca.
-                            - 'h-full' hace que la imagen ocupe toda la altura del contenedor (h-24).
-                            - 'w-auto' ajusta el ancho para mantener la proporción y evitar distorsión.
-                        --}}
-                        
-                        {{-- 
-                          LÍNEA CORREGIDA: 
-                          Se eliminó el apóstrofo adicional. 
-                          La variable $brand->logo se mantiene intacta.
-                        --}}
-                        <img src="{{ asset('storage/' . $brand->logo) }}" 
-                             alt="Logo de {{ $brand->name }}" 
-                             class="h-full w-auto object-contain transition-transform duration-300 ease-in-out transform group-hover:scale-110" 
+                    <div class="flex-shrink-0 h-full flex justify-center items-center mx-8">
+
+                        {{-- Logo con efecto glow al hover --}}
+                        <img src="{{ asset('storage/' . $brand->logo) }}"
+                             alt="Logo de {{ $brand->name }}"
+                             class="h-full w-auto object-contain
+                                    transition-all duration-500 ease-out
+                                    group-hover:scale-[1.12]
+                                    hover:brightness-125 hover:drop-shadow-[0_0_10px_#fff3]"
                              loading="lazy">
                     </div>
                 @endforeach
@@ -58,25 +51,18 @@
     </div>
 </div>
 
-{{-- Estilos y Animación del Carrusel (Sin cambios de color, se mantiene) --}}
+{{-- Animación y estilos adicionales --}}
 <style>
-/* Define la animación de desplazamiento horizontal. */
 @keyframes scroll-left-tall {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
-/* Aplica la animación al contenedor de los logos. */
 #brands-carousel-tall {
-    animation: scroll-left-tall 50s linear infinite;
+    animation: scroll-left-tall 45s linear infinite;
     will-change: transform;
 }
 
-/* Pausa la animación al pasar el cursor sobre el carrusel. */
 .group:hover #brands-carousel-tall {
     animation-play-state: paused;
 }
